@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bentuk Gambar</title>
+  <style>
+   
+    .output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <select id="image-select">
+        <option disabled hidden selected>pilih satu</option>
+      <option value="image1">Image 1</option>
+      <option value="image2">Image 2</option>
+      <option value="image3">Image 3</option>
+    </select>
+    <select id="shape-select">
+        <option disabled hidden selected>pilih satu</option>
+      <option value="circle">Circle</option>
+      <option value="triangle">Triangle</option>
+      <option value="square">Square</option>
+    </select>
+    <select id="border-color-select">
+        <option disabled hidden selected>pilih satu</option>
+      <option value="yellow">Yellow</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </select>
+    <button id="submit-btn">Submit</button>
+  </div>
+  
+
+  <div class="output"></div>
+
+ 
+  <script>
+
+    const imageSelect = document.getElementById('image-select');
+    const shapeSelect = document.getElementById('shape-select');
+    const borderColorSelect = document.getElementById('border-color-select');
+    const submitBtn = document.getElementById('submit-btn');
+    const outputContainer = document.querySelector('.output');
+
+  
+    submitBtn.addEventListener('click', () => {
+
+      const selectedImage = imageSelect.value;
+      const selectedShape = shapeSelect.value;
+      const selectedBorderColor = borderColorSelect.value;
+
+
+      let outputHTML = '';
+      let imageUrl = '';
+      if (selectedImage === 'image1') {
+        imageUrl = '_3.jpeg';
+      } else if (selectedImage === 'image2') {
+        imageUrl = '9c8f8ffd-de50-4a94-b028-ec9e35f1b85e.jpeg';
+      } else if (selectedImage === 'image3') {
+        imageUrl = 'Motor kitty.jpeg';
+      }
+
+    
+      if (selectedShape === 'circle') {
+        outputHTML = `<img src="${imageUrl}" style="border-radius: 50%; border: 2px solid ${selectedBorderColor};">`;
+      } else if (selectedShape === 'triangle') {
+        outputHTML = `<img src="${imageUrl}" style="clip-path: polygon(50% 0, 0 100%, 100% 100%); border: 2px solid ${selectedBorderColor};">`;
+      } else if (selectedShape === 'square') {
+        outputHTML = `<img src="${imageUrl}" style="border: 2px solid ${selectedBorderColor};">`;
+      }
+
+    
+      outputContainer.innerHTML = outputHTML;
+    });
+  </script>
+</body>
+</html>

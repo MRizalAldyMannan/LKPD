@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Data Tanggal(P6)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20%;
+  }
+
+  input[type="date"] {
+    width: 97%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  input[type="submit"] {
+    background-color: #5F9EA0;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #126b6e;
+  }
+
+  p {
+    font-size: 16px;
+    color: #000000;
+  }
+
+  #result {
+    font-weight: bold;
+    color: #000000;
+  }
+</style>
+</head>
+<body>
+
+    <form id="form1">
+        <input type="date" id="search-input" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"><p>Tidak mencari Data . . . </p></div>
+    
+
+    <script>
+        document.getElementById('form1').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let inputDate = document.getElementById('search-input').value;
+            let resultText;
+
+            if (!inputDate) { 
+                resultText = "Tidak dapat mencari data...";
+            } else {
+                let date = new Date(inputDate);
+                let day = date.getDate();
+                let month = date.toLocaleString('id-ID', { month: 'long' }); 
+                let year = date.getFullYear();
+
+                resultText = `Mencari data untuk tanggal ${day} ${month} ${year}...`;
+            }
+            document.getElementById('result').innerHTML = resultText;
+        });
+    </script>
+
+</body>
+</html>
